@@ -11,9 +11,9 @@ services:
     ports:
     - 9000:9000
     environment:
-      MINIO_ROOT_USER: $(minio_root_user:-admin)
-      MINIO_ROOT_PASSWORD: $(minio_root_password:-admin123)
-      MINIO_PROMETHEUS_AUTH_TYPE: public
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-admin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-admin123}
+#      MINIO_PROMETHEUS_AUTH_TYPE: public
 
   console:
     image: minio/console:latest

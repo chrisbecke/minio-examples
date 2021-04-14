@@ -42,3 +42,15 @@ Now, open [console](http://localhost:8080) with the credentials `console`, `cons
 
 If they are not, check [prometheus](http://localhost) - the Status > Targets menu should show minio:9000 as up.
 And/or [minio](http://localhost:9000) with the credentials `admin`, `admin123`.
+
+## Alternate scrape paths
+
+* /minio/v2/metrics/cluster
+* /minio/v2/metrics/node
+* /minio/prometheus/metrics
+
+Edit `prometheus/prometheus.yml` with the alternate scrape path, and then restart prometheus to pick up the new config
+
+```bash
+docker-compose kill -s SIGHUP prometheus
+```
