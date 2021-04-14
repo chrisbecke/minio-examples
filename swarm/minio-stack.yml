@@ -1,0 +1,29 @@
+version: "3.9"
+
+secrets:
+  access_key:
+    file: access_key.txt
+  secret_key:
+    file: secret_key.txt
+
+volumes:
+  data:
+
+services:
+  minio:
+    image: minio/minio:${MINIO_TAG:-latest}
+    command: server http://minio{1...4}:9000/data
+    hostname: minio{{.Task.Slot}}
+    volumes:
+    - data:/data
+    secrets:
+    - access_key
+    - secret_key
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+    ports:
+      - 9000:9000
+    deploy:
+      replicas: 4

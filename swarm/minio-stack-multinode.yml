@@ -1,0 +1,19 @@
+version: "3.9"
+
+# Remove the x- to use this volume configuration to use a docker volume but specify a mount location.
+# Unlike bind mounts the target path MUST exist as docker will not create it
+x-volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/minio/data
+
+services:
+  minio:
+    deploy:
+      placement:
+        max_replicas_per_node: 1
+        constraints:
+          - node.labels.minio==true

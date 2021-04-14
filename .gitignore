@@ -1,0 +1,4 @@
+**/secret_key.txt
+**/access_key.txt
+**/.env.local
+**/.mc

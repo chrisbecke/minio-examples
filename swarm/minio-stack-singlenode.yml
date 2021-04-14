@@ -1,0 +1,5 @@
+version: "3.9"
+
+volumes:
+  data:
+    name: '{{index .Service.Labels "com.docker.stack.namespace"}}_data{{.Task.Slot}}'
