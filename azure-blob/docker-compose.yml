@@ -1,0 +1,19 @@
+
+volumes:
+  data:
+    driver: azure_file
+    driver_opts:
+      share_name: ${SHARE-NAME:-share-name}
+      storage_account_name: ${AZURE_STORAGE_ACCOUNT}
+
+services:
+  minio:
+    image: minio/minio:latest
+    command: minio gateway azure
+    env_file:
+    - .env
+    ports:
+    - 9000:9000
+    environment:
+      MINIO_ACCESS_KEY: admin
+      MINIO_SECRET_KEY: admin123

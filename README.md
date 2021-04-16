@@ -2,6 +2,10 @@
 
 Some sample configurations of minio on docker demonstrating various features.
 
+## /azure-blob
+
+Demonstrates a compose file that deploys a minio gateway to ACI in front of azure blob storage.
+
 ## /console
 
 This folder has a docker compose that demonstrates how to setup minio console, with prometheus.
